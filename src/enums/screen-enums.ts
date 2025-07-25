@@ -1,0 +1,10 @@
+const enum ScreenEnums {
+  //? NAVIGATION ROUTES
+  HOME = 'HOME',
+  ADD_EXPENSE = 'ADD_EXPENSE',
+  ANALYTICS = 'ANALYTICS',
+  TRANSACTIONS = 'TRANSACTIONS',
+  BOTTOM_TAB_STACK = 'BOTTOM_TAB_STACK',
+}
+
+export default ScreenEnums;
