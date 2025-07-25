@@ -1,3 +1,4 @@
+import { TransactionModel } from './types';
 export type AuthStackParamList = {
   AppIntro: undefined;
   Login: undefined;
@@ -12,21 +13,10 @@ export type AuthStackParamList = {
   AddBVN: undefined;
 };
 
-export interface TransactionModel {
-  id: string;
-  title: string;
+export type TransactionModel = {
   description: string;
-  amount: string;
-  status: 'pending' | 'completed' | 'failed';
+  amount: number;
+  category: string;
   date: string;
-}
-
-// Notification type
-export interface NotificationModel {
-  id: string;
-  title: string;
-  description: string;
-  is_read: boolean;
-  type: 'transaction' | 'security' | 'billing' | 'onboarding';
-  date: string;
-}
+  icon: React.ReactNode;
+};

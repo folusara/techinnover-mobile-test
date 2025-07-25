@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, TextStyle} from 'react-native';
+import { ms } from 'react-native-size-matters';
 
 interface CustomTextProps {
   text: string;
@@ -24,8 +25,8 @@ interface CustomTextProps {
   color: string;
   fontFamily?: string;
   marginRight?: number;
-  textDecorationLine?: string
-
+  textDecorationLine?: 'none' | 'underline' | 'line-through' | 'underline line-through' | undefined;
+  lineHeight?: number | undefined;
   onPress?: () => void;
 }
 
@@ -42,7 +43,8 @@ export default function _Text({
   color,
   fontFamily,
   marginRight,
-  textDecorationLine
+  textDecorationLine,
+  lineHeight,
 }: CustomTextProps) {
 
   const customStyle: TextStyle = {
@@ -54,7 +56,8 @@ export default function _Text({
     marginRight,
     color,
     fontFamily,
-    textDecorationLine
+    textDecorationLine,
+    lineHeight,
   };
 
   return (

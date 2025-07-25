@@ -1,10 +1,12 @@
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import AuthModeReducer from './AuthModeSlice';
+import TransactionReducer from "./transactionSclice"
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const rootReducer = combineReducers({
   authMode: AuthModeReducer,
+  transactions: TransactionReducer,
 });
 
 const persistConfig = {

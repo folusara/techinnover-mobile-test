@@ -14,11 +14,16 @@ import CategoryItem from '../../components/category/categoryItem';
 import TransactioIcon1 from '../../assets/icons/transactionIcon1.svg';
 import TransactionIcon2 from '../../assets/icons/transaction_icon2.svg';
 import TransactionItem from '../../components/TransactionItem';
+import TrnsactionFoodIcon from "../../assets/icons/food_expense_icon.svg"
+import HousingIcon from "../../assets/icons/housing_expense_icon.svg"
 import { PieChart } from 'react-native-svg-charts';
+import AppButton from '../../components/base/button';
+import { useNavigation } from '@react-navigation/native';
+import ScreenEnums from '../../enums/screen-enums';
 
 function AnalyticsScreen() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(0);
-
+  const navigation = useNavigation();
   const types = [
     { id: 1, title: 'All' },
     { id: 2, title: 'Daily' },
@@ -27,14 +32,14 @@ function AnalyticsScreen() {
   ];
 
   const expenseCategories = [
-    { title: 'Food & Drinks', value: 'Groceries, restaurants, coffee shops', color: '#FFA07A' },
-    { title: 'Family', value: 'Childcare, dependents, family support', color: '#9370DB' },
-    { title: 'Housing', value: 'Rent, mortgage, home maintenance', color: '#4682B4' },
-    { title: 'Shopping', value: 'Clothing, electronics, personal items', color: '#FF69B4' },
-    { title: 'Transportation', value: 'Fuel, ride-hailing, car maintenance', color: '#3CB371' },
-    { title: 'Travel / Vacation', value: 'Flights, hotels, holiday spending', color: '#FFD700' }
+    { title: 'Food & Drinks', value: 'Groceries, restaurants, coffee shops', color: '#F04438' },
+    { title: 'Family', value: 'Childcare, dependents, family support', color: '#039855' },
+    { title: 'Housing', value: 'Rent, mortgage, home maintenance', color: '#FACC15' },
+    { title: 'Shopping', value: 'Clothing, electronics, personal items', color: '#F97316' },
+    { title: 'Transportation', value: 'Fuel, ride-hailing, car maintenance', color: '#005EE8' },
+    { title: 'Travel & Vacation', value: 'Flights, hotels, holiday spending', color: '#800080' },
   ];
-  const chartHeight = 300;
+  const chartHeight = ms(300);
   const pieChartData = expenseCategories.map((category, index) => {
   const randomAmount = Math.floor(Math.random() * 20000) + 1000; // Random value between 1000 and 20999
   return {
@@ -43,25 +48,26 @@ function AnalyticsScreen() {
     svg: {
       fill: category.color,
     },
+    arc: { padAngle: 0 },
     label: category.title,
   };
 });
   const transactions = [
     {
+      description: 'Grocery shopping',
+      amount: 23500,
+      category: 'Food & Drinks',
+      date: 'Wed, 19 Jan',
+      icon: <TrnsactionFoodIcon width={ms(36)} height={ms(36)} />,
+      color: '#FEC53D',
+    },
+      {
       description: 'Cooking gas',
       amount: 12000,
       category: 'Housing',
       date: 'Sun, 16 Jan',
-      icon: <TransactioIcon1 width={ms(36)} height={ms(36)} />,
+      icon: <HousingIcon width={ms(36)} height={ms(36)} />,
       color: '#A162F7',
-    },
-    {
-      description: 'Grocery shopping',
-      amount: 23500,
-      category: 'Food',
-      date: 'Wed, 19 Jan',
-      icon: <TransactionIcon2 width={ms(36)} height={ms(36)} />,
-      color: '#FEC53D',
     },
     {
       description: 'Uber ride to office',
@@ -86,7 +92,7 @@ function AnalyticsScreen() {
       date: 'Mon, 24 Jan',
       icon: <TransactioIcon1 width={ms(36)} height={ms(36)} />,
       color: '#4CD964',
-    }
+    },
   ];
 
   return (
@@ -174,19 +180,20 @@ function AnalyticsScreen() {
           flexDirection: 'row',
           alignItems: 'flex-start',
           justifyContent: 'center',
+          marginTop: ms(10)
         }}
       >
         <_Text
           text="₦"
-          fontSize={ms(25)}
+          fontSize={ms(17)}
           color={COLORS.dark}
-          marginTop={ms(5)}
           fontFamily={FONT.Lato_600_semiBold}
         />
         <_Text
           text="12,000"
           marginLeft={ms(3)}
-          fontSize={ms(37)}
+          fontSize={ms(25)}
+          lineHeight={ms(34)}
           color={COLORS.dark}
           fontFamily={FONT.Lato_600_semiBold}
         />
@@ -205,7 +212,8 @@ function AnalyticsScreen() {
                     text={item.title}
                     color='#667085'
                     fontSize={ms(14)}
-                    marginLeft={ms(5)}
+                    marginLeft={ms(8)}
+                    marginTop={ms(-2.5)}
                     fontFamily={FONT.Lato_400_regular}
                   />
                 </View>
@@ -219,7 +227,8 @@ function AnalyticsScreen() {
                     text={item.title}
                     color='#667085'
                     fontSize={ms(14)}
-                    marginLeft={ms(5)}
+                    marginLeft={ms(8)}
+                    marginTop={ms(-2.5)}
                     fontFamily={FONT.Lato_400_regular}
                   />
                 </View>
@@ -228,7 +237,13 @@ function AnalyticsScreen() {
           </View>
 
           <View style={styles.section}>
-            <FeatureHeader title='Categories' icon={<AddIcon height={ms(16)} width={ms(16)} />} rightText='Add' />
+            <FeatureHeader 
+              onPressAction={
+               () => navigation.navigate(ScreenEnums.BOTTOM_TAB_STACK)
+              }
+              title='Categories' 
+              icon={<AddIcon height={ms(16)} 
+              width={ms(16)} />} rightText='Add' />
             <View style={styles.categoryList}>
               <FlatList
                 data={transactions}
@@ -247,6 +262,21 @@ function AnalyticsScreen() {
               keyExtractor={(item, index) => index.toString()}
               renderItem={({ item }) => <TransactionItem transactionHistory item={item} />}
               scrollEnabled={false}
+            />
+            <AppButton 
+             children="Load more Transaction"
+                width="100%"
+                height={ms(50)}
+                borderColor="#005EE8"
+                style={{marginTop: ms(30)}}
+                borderWidth={ms(1)}
+                borderRadius={ms(12)}
+                backgroundColor={COLORS.white}
+                textStyle={{
+                  color:"#005EE8",
+                  fontFamily: FONT.Lato_500_medium,
+                  fontSize: ms(17),
+                }}
             />
           </View>
         </Container>
@@ -312,7 +342,7 @@ const styles = StyleSheet.create({
   categoryLegend: {
     width: '100%',
     alignItems: 'center',
-    marginTop: ms(20),
+    marginTop: ms(5),
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
@@ -320,7 +350,7 @@ const styles = StyleSheet.create({
     width: ms(123),
     alignItems: 'center',
     flexDirection: 'row',
-    height: ms(28),
+    marginTop: ms(15),
   },
   legendDot: {
     height: ms(8),

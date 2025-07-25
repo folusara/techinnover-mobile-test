@@ -15,21 +15,21 @@ function CategoryItem({item, onPress}: any) {
                 borderRadius: ms(12),
             borderWidth: ms(1),
                 borderColor: COLORS.tint_grey,
-                marginRight: ms(16),
+                marginRight: ms(8),
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'row',
           
         }}
         >
-            <View style={{  gap: ms(5), width:ms(154)}}>
-                <_Text text={item.description} textAlign="center" fontSize={ms(15)} color={COLORS.dark} fontFamily={FONT.Lato_500_medium} />
+            <View style={{  gap: ms(8)}}>
+                <_Text text={item.category} lineHeight={ms(20)} textAlign="center" fontSize={ms(15)} color={COLORS.dark} fontFamily={FONT.Lato_600_semiBold} />
                 <View style={{justifyContent:"center", alignItems:"center"}}>
                     {item?.icon}
                 </View>
                 <View style={{ flexDirection: "row", alignItems:"flex-start", justifyContent:"center", }}>
                     <_Text text="₦" fontSize={ms(15)} color={COLORS.dark} marginTop={ms(2)} fontFamily={FONT.Lato_600_semiBold} />
-                    <_Text text={formatCurrency(item?.amount, false)} marginLeft={ms(3)} fontSize={ms(19)} color={COLORS.dark} fontFamily={FONT.Lato_600_semiBold} />
+                    <_Text text={formatCurrency(item?.amount, false)} marginLeft={ms(3)} fontSize={ms(17)} color={COLORS.dark} fontFamily={FONT.Lato_600_semiBold} />
                 </View>
             </View>
         </TouchableOpacity>

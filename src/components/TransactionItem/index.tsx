@@ -39,7 +39,6 @@ const TransactionItem = ({ item, onPress, transactionHistory }: TransactionItemP
       }}
       onPress={onPress}
     >
-      {/* Left Side: Icon or Color Dot + Description */}
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         {transactionHistory ? (
           <View
@@ -54,12 +53,12 @@ const TransactionItem = ({ item, onPress, transactionHistory }: TransactionItemP
           item.icon
         )}
 
-        <View style={{ gap: ms(3), marginLeft: ms(15) }}>
+        <View style={{ gap: ms(8), marginLeft: ms(15) }}>
           <_Text
             fontSize={ms(16)}
             text={item.description}
             color={COLORS.dark}
-            fontFamily={FONT.Lato_500_medium}
+            fontFamily={FONT.Lato_600_semiBold}
           />
           <_Text
             fontSize={ms(12)}
@@ -71,7 +70,7 @@ const TransactionItem = ({ item, onPress, transactionHistory }: TransactionItemP
       </View>
 
       {/* Right Side: Amount + Date */}
-      <View style={{ gap: ms(3), alignItems: "flex-end" }}>
+      <View style={{ gap: ms(8),width:ms(73), alignItems: "flex-start" }}>
         <_Text
           fontSize={ms(16)}
           text={`${formatCurrency(item?.amount, true)}`}
@@ -82,7 +81,7 @@ const TransactionItem = ({ item, onPress, transactionHistory }: TransactionItemP
           fontSize={ms(12)}
           text={item.date}
           color={COLORS.grey}
-          fontFamily={FONT.Lato_400_regular}
+          fontFamily={FONT.Lato_500_medium}
         />
       </View>
     </TouchableOpacity>

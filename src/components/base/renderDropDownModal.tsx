@@ -8,11 +8,13 @@ import ForwardIcon from "../../assets/icons/forward_icon.svg";
 
 interface Props {
   data: any[];
+  onPress: () => void;
 }
 
-const RenderItem = ({ item }: { item: any }) => {
+  
+const RenderItem = ({ item, onPress }: { item: any, onPress: (item: any) => void }) => {
   return (
-    <TouchableOpacity style={styles.itemContainer}>
+    <TouchableOpacity onPress={() => onPress(item)} style={styles.itemContainer}>
       <View style={styles.itemContent}>
         {item?.icon}
         <_Text
@@ -30,30 +32,9 @@ const RenderItem = ({ item }: { item: any }) => {
   );
 };
 
-export default function RenderDropModalContent({ data }: Props) {
+
+export default function RenderDropModalContent({ data, onPress }: Props) {
   return (
-    // <View style={styles.container}>
-    //   <Container>
-    //     <_Text
-    //       textAlign="center"
-    //       text={'Select a Category'}
-    //       color={COLORS.dark}
-    //       fontSize={ms(21)}
-    //       marginTop={ms(40)}
-    //       fontFamily={FONT.Lato_600_semiBold}
-    //       fontWeight="400"
-    //     />
-    //    <View style={{marginTop: ms(20)}}>
-    //      <FlatList
-    //       data={data}
-    //       keyExtractor={(_, index) => index.toString()}
-    //       renderItem={({ item }) => <RenderItem item={item} />}
-    //       showsVerticalScrollIndicator={false}
-    //       scrollEnabled={true}
-    //     />
-    //    </View>
-    //   </Container>
-    // </View>
     <View style={styles.container}>
       <Container style={{ flex: 1 }}> {/* Add flex:1 here too */}
         <_Text
@@ -65,14 +46,18 @@ export default function RenderDropModalContent({ data }: Props) {
           fontFamily={FONT.Lato_600_semiBold}
           fontWeight="400"
         />
-        <FlatList
-          data={data}
-          contentContainerStyle={{ paddingBottom: ms(100) }} // Optional padding
-          keyExtractor={(_, index) => index.toString()}
-          renderItem={({ item }) => <RenderItem item={item} />}
-          showsVerticalScrollIndicator={false}
-          scrollEnabled={true}
-        />
+        <View style={{paddingVertical: ms(40)}}>
+             <FlatList
+                data={data}
+              
+                contentContainerStyle={{ paddingBottom: ms(100) }}
+                keyExtractor={(_, index) => index.toString()}
+                renderItem={({ item }) => <RenderItem onPress={onPress} item={item} />}
+                showsVerticalScrollIndicator={false}
+                scrollEnabled={true}
+              />
+        </View>
+       
       </Container>
     </View>
   );

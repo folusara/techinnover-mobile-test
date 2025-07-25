@@ -29,15 +29,15 @@ const FeatureHeader = (props: FeatureHeaderProps) => {
   return (
     <View style={FeatureHeaderStyles.container}>
       <View>
-        <_Text color={COLORS.dark} text={title} fontWeight='200'  fontSize={ms(17)} fontFamily={FONT.Lato_600_semiBold} />
+        <_Text color={COLORS.dark} text={title} fontSize={ms(17)} fontFamily={FONT.Lato_700_bold} />
       </View>
       <TouchableOpacity
         onPress={onPressAction}
         style={[FeatureHeaderStyles.rightGroup, {gap: iconGap}]}>
         <View>
-          <View style={{borderBottomWidth: rightText && 1,flexDirection:"row", alignItems:"center", borderColor: rightText && "#005EE8"}}>
+          <View style={{borderBottomWidth: rightText && ms(0.75),flexDirection:"row", alignItems:"center", borderColor: rightText && "#005EE8"}}>
              {icon}
-             <_Text color={"#005EE8"} marginLeft={icon && ms(2)} text={rightText} fontSize={ms(15)} fontFamily={FONT.Lato_500_medium}/>
+             <_Text color={"#005EE8"} marginLeft={icon && ms(2)} text={rightText} fontSize={ms(15)} fontFamily={FONT.Lato_600_semiBold}/>
          </View>
       </View>
         {/* {iconName && (

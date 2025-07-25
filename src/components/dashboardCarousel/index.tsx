@@ -19,7 +19,7 @@ function DashboardCarousel({ item }: any) {
             <View style={{gap: ms(10), alignItems: 'center'}}>
                 <View style={{ flexDirection: "row", alignItems: "center"}}>
                     <_Text text={"Today spend"} fontSize={ms(16)} color={COLORS.white} fontFamily={FONT.Lato_600_semiBold} />
-                    <_Text text={`(Mon, 15 Apr)`} marginLeft={ms(2)} fontSize={ms(16)} color={COLORS.white_fade} fontFamily={FONT.Lato_600_semiBold} />
+                    <_Text text={`(Mon, 15 Apr)`} marginLeft={ms(4)} fontSize={ms(16)} color={COLORS.white_fade} fontFamily={FONT.Lato_600_semiBold} />
                 </View>
                  <View style={{ flexDirection: "row", alignItems:"flex-start", justifyContent:"center", }}>
                     <_Text text="₦" fontSize={ms(25)} color={COLORS.white} marginTop={ms(5)} fontFamily={FONT.Lato_600_semiBold} />

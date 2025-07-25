@@ -24,7 +24,7 @@ function QuickLink({item, onPress}: any) {
         >
             <View style={{  gap: ms(10), width:ms(154)}}>
                 {item?.icon}
-                <_Text text={item.ctx} fontSize={ms(16)} color={COLORS.blue} fontFamily={FONT.Lato_500_medium} />
+                <_Text text={item.ctx} fontSize={ms(16)} color={COLORS.blue} lineHeight={ms(24)} fontFamily={FONT.Lato_500_medium} />
             </View>
         </TouchableOpacity>
      );

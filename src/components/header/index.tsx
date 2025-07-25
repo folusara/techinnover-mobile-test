@@ -11,9 +11,9 @@ function Header() {
             padding: "5%",
             justifyContent: "space-between"
         }} >
-            <Logo />
-            <TouchableOpacity style={{backgroundColor:"#D0D5DD", height: ms(36), width: ms(36), borderRadius: ms(36),  alignItems:"center", justifyContent:"center"}}>
-                <UserIcon />
+            <Logo width={ms(128)} height={ms(29)} />
+            <TouchableOpacity style={{backgroundColor:"#D0D5DD", height: ms(37), width: ms(37), borderRadius: ms(37),  alignItems:"center", justifyContent:"center"}}>
+                <UserIcon  width={ms(25)} height={ms(25)} />
             </TouchableOpacity>
        </View>
     );
